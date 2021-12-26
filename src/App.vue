@@ -1,28 +1,29 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <button @click="openFirstDialog">open first dialog</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import FirstDialog from "./business-components/first-dialog.vue";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  data() {
+    return {
+      testData: {
+        name: "andy",
+        age: "18",
+      },
+    };
+  },
+  methods: {
+    openFirstDialog() {
+      this.$openDialog(FirstDialog, { data: this.testData }).then((data) => {
+        console.log("dialog-close-data", data);
+      });
+    },
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
